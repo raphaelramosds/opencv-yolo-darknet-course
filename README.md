@@ -10,7 +10,7 @@ sudo apt-get install dos2unix wget git make
 
 # Instalação do poetry
 curl -sSL https://install.python-poetry.org | python3 -
-export PATH="/home/rapha/.local/bin:$PATH:" # OBS: necessário colocar esse comando no .bashrc ou .zshrc
+export PATH="/home/$USER/.local/bin:$PATH:" # OBS: necessário colocar esse comando no .bashrc ou .zshrc
 ```
 
 ## Configuração do ambiente
