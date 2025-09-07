@@ -10,15 +10,26 @@ sudo apt-get install dos2unix wget git make
 
 # Instalação do poetry
 curl -sSL https://install.python-poetry.org | python3 -
-export PATH="/home/$USER/.local/bin:$PATH:" # OBS: necessário colocar esse comando no .bashrc ou .zshrc
+export PATH="/home/$USER/.local/bin:$PATH:"
 ```
+
+>💡**NOTE:** O último comando precisará ser adicionado ao .zhrc ou .bashrc para que o poetry possa ser chamado de qualquer diretório do terminal
+
 
 ## Configuração do ambiente
 
-A preparação do ambiente foi automatizada. Com um único comando são instalados os pacotes necessários, feito o download do framework Darknet e dos pesos do modelo YOLOv3 pré-treinado utilizados nos exemplos deste repositório
+A preparação do ambiente foi automatizada. Com um único comando são instalados os pacotes necessários, feito o download do framework Darknet e dos pesos do modelo YOLOv3 pré-treinado utilizados nos exemplos deste repositório.
+
+Para configurar e executar usando CPU:
 
 ```bash
 make setup
+```
+
+Para configurar e executar usando GPU (caso disponível):
+
+```bash
+make setup-gpu
 ```
 
 ## Reconhecimento

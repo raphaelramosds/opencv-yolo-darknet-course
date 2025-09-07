@@ -13,13 +13,23 @@ $(WEIGHTS):
 
 # Etapa 2 - Compilando a biblioteca
 # Etapa 3 - Baixando os pesos do modelo pré-treinado
-build: $(WEIGHTS) $(DARKNET_DIR)
+cpu: $(WEIGHTS) $(DARKNET_DIR)
 	cd $(DARKNET_DIR) && $(MAKE)
+
+# FIXME: getting "CUDA Error: no CUDA-capable device is detected" on jupyter notebook cell
+gpu: $(WEIGHTS) $(DARKNET_DIR)
+	cd $(DARKNET_DIR) && \
+	sed -i 's/^GPU=.*/GPU=1/' Makefile && \
+	sed -i '/-gencode/d' Makefile && \
+	sed -i '9iARCH= -gencode arch=compute_50,code=[sm_50,compute_50] -gencode arch=compute_52,code=[sm_52,compute_52] -gencode arch=compute_86,code=sm_86' Makefile && \
+	$(MAKE)
 
 install:
 	poetry install
 
-setup: build install
+setup: cpu install
+
+setup-gpu: gpu install
 
 clean:
 	rm -rf $(DARKNET_DIR)

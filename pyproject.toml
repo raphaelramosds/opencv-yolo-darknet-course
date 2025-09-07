@@ -5,7 +5,7 @@ description = ""
 authors = [{ name = "Raphael Ramos", email = "raphael.opensource@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = ["ipykernel (>=6.30.1,<7.0.0)", "opencv-python (>=4.12.0.88,<5.0.0.0)", "matplotlib (>=3.10.6,<4.0.0)"]
+dependencies = ["ipykernel (>=6.30.1,<7.0.0)", "opencv-python (>=4.12.0.88,<5.0.0.0)", "matplotlib (>=3.10.6,<4.0.0)", "tensorflow[and-cuda] (>=2.20.0,<3.0.0)"]
 
 
 [build-system]
