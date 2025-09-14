@@ -3,3 +3,5 @@
 **/darknet
 **/*.weights
 **/*.tar.gz
+**/*.cfg
+**/*.names

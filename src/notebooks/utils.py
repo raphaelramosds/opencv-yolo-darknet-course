@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 import os
 import cv2
 import matplotlib.pyplot as plt
@@ -7,14 +8,14 @@ img = f"{shared}/img"
 darknet = f"{shared}/darknet"
 
 
-def compactar_yolov3() -> None:
+def _compactar_yolov3() -> None:
     """
     Rotina para compactar os arquivos relevantes do modelo YOLOv3
 
     Apenas tres arquivos sao importantes para fazer deteccoes com o YOLOv3
     - yolov3.weights    pesos da rede neural
     - yolov3.cfg        configuracao da rede neural
-    - coco.names        conjunto de dados utilizado para treinar a rede neural
+    - coco.names        classes (labels) reconhecidas pelo modelo
     """
     os.system(
         f"""
@@ -24,6 +25,40 @@ def compactar_yolov3() -> None:
             -C {darknet}/data coco.names &&\
         mv modelo_YOLOv3.tar.gz {shared}
         """
+    )
+
+
+def _descompactar_yolov3() -> None:
+    """
+    Rotina para descompactar os arquivos do modedlo YOLOv3
+    """
+    os.system(
+        f"""
+        mkdir -p {shared}/modelo_YOLOv3 &&\
+        tar -xf {shared}/modelo_YOLOv3.tar.gz -C {shared}/modelo_YOLOv3 &&\
+        rm -rf {shared}/modelo_YOLOv3.tar.gz
+        """
+    )
+
+
+@dataclass
+class yolov3:
+    labels_path: str
+    weights_path: str
+    config_path: str
+    labels: list
+
+
+def carregar_yolov3() -> yolov3:
+    _compactar_yolov3()
+    _descompactar_yolov3()
+    labels_path = f"{shared}/modelo_YOLOv3/coco.names"
+    labels = open(labels_path).read().strip().split("\n")
+    return yolov3(
+        labels_path,
+        f"{shared}/modelo_YOLOv3/yolov3.weights",
+        f"{shared}/modelo_YOLOv3/yolov3.cfg",
+        labels,
     )
 
 
@@ -42,7 +77,7 @@ def mostrar_imagem(caminho_imagem: str) -> None:
     plt.show()
 
 
-def buscar_imagem(caminho_imagem: str) -> str:
+def _buscar_imagem(caminho_imagem: str) -> str:
     """
     Rotina para buscar imagem
 
@@ -71,7 +106,7 @@ def detectar_objetos(caminho_imagem: str, params: dict = {}) -> None:
         caminho_imagem (str): caminho para imagem de interesse
         params (dict): parametros adicionais para o algoritmo de deteccao
     """
-    caminho_imagem = buscar_imagem(caminho_imagem)
+    caminho_imagem = _buscar_imagem(caminho_imagem)
     darknet_cmd = f"./darknet detect cfg/yolov3.cfg ../yolov3.weights {caminho_imagem}"
 
     if params.get("thresh"):
