@@ -2,6 +2,7 @@ import os
 import cv2
 import matplotlib.pyplot as plt
 
+IMG_PATH = "../../shared/img"
 DARKNET_PATH = "../../shared/darknet"
 
 
@@ -15,6 +16,15 @@ def mostrar_imagem(caminho: str) -> None:
 
 
 def detectar_objetos(caminho: str) -> None:
+    if os.path.exists(f"{DARKNET_PATH}/data/{caminho}"):
+        # Procurar no diretorio de dados do repositorio darknet
+        caminho = f"{DARKNET_PATH}/data/{caminho}"
+    elif os.path.exists(f"{IMG_PATH}/{caminho}"):
+        # Procurar no diretorio de imagens local shared/img
+        caminho = f"{IMG_PATH}/{caminho}"
+    else:
+        raise Exception(f"Imagem {caminho} nao encontrada")
+
     os.system(
         f"cd {DARKNET_PATH} && ./darknet detect cfg/yolov3.cfg ../yolov3.weights {caminho}"
     )
