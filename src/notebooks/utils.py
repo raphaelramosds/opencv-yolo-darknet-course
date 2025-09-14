@@ -63,15 +63,22 @@ def buscar_imagem(caminho_imagem: str) -> str:
     return caminho_imagem
 
 
-def detectar_objetos(caminho_imagem: str) -> None:
+def detectar_objetos(caminho_imagem: str, params: dict = {}) -> None:
     """
     Rotina para detectar objetos com a rede YOLO a partir do framework darknet
 
     Argumentos:
         caminho_imagem (str): caminho para imagem de interesse
+        params (dict): parametros adicionais para o algoritmo de deteccao
     """
     caminho_imagem = buscar_imagem(caminho_imagem)
-    os.system(
-        f"cd {darknet} && ./darknet detect cfg/yolov3.cfg ../yolov3.weights {caminho_imagem}"
-    )
-    mostrar_imagem(caminho_imagem=f"{darknet}/predictions.jpg")
+    darknet_cmd = f"./darknet detect cfg/yolov3.cfg ../yolov3.weights {caminho_imagem}"
+
+    if params.get("thresh"):
+        darknet_cmd = f"{darknet_cmd} -thresh {params['thresh']}"
+
+    if params.get("ext_output"):
+        darknet_cmd = f"{darknet_cmd} -ext_output"
+
+    os.system(f"cd {darknet} && {darknet_cmd}")
+    mostrar_imagem(f"{darknet}/predictions.jpg")

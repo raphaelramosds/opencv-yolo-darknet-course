@@ -8,11 +8,11 @@ $(DARKNET_DIR):
 	git clone https://github.com/pjreddie/darknet.git $(DARKNET_DIR)
 	find $(DARKNET_DIR) -type f -print0 | xargs -0 dos2unix
 
+# Etapa 3 - Baixando os pesos do modelo pré-treinado
 $(WEIGHTS):
 	wget -O $(WEIGHTS) https://data.pjreddie.com/files/yolov3.weights
 
 # Etapa 2 - Compilando a biblioteca
-# Etapa 3 - Baixando os pesos do modelo pré-treinado
 cpu: $(WEIGHTS) $(DARKNET_DIR)
 	cd $(DARKNET_DIR) && $(MAKE)
 
