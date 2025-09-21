@@ -62,20 +62,24 @@ def carregar_yolov3() -> yolov3:
     )
 
 
-def mostrar_imagem(caminho_imagem: str) -> None:
+def mostrar_imagem(caminho_imagem: str) -> cv2.typing.MatLike:
     """
     Rotina para exibir uma imagem com o OpenCV
 
     Argumentos:
         caminho_imagem (str): caminho para imagem de interesse
     """
+    caminho_imagem = _buscar_imagem(caminho_imagem)
     imagem = cv2.imread(caminho_imagem)
     fig = plt.gcf()
     fig.set_size_inches(18, 10)
     plt.axis("off")
     plt.imshow(cv2.cvtColor(imagem, cv2.COLOR_BGR2RGB))
     plt.show()
+    return imagem
 
+class ImageNotFound(Exception):
+    ...
 
 def _buscar_imagem(caminho_imagem: str) -> str:
     """
@@ -94,7 +98,7 @@ def _buscar_imagem(caminho_imagem: str) -> str:
     elif os.path.exists(f"{img}/{caminho_imagem}"):
         caminho_imagem = f"{img}/{caminho_imagem}"
     else:
-        raise Exception(f"Imagem {caminho_imagem} nao encontrada")
+        raise ImageNotFound(caminho_imagem)
     return caminho_imagem
 
 
