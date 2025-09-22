@@ -30,7 +30,7 @@ def _compactar_yolov3() -> None:
 
 def _descompactar_yolov3() -> None:
     """
-    Rotina para descompactar os arquivos do modedlo YOLOv3
+    Rotina para descompactar os arquivos do modelo YOLOv3
     """
     os.system(
         f"""
@@ -50,8 +50,9 @@ class yolov3:
 
 
 def carregar_yolov3() -> yolov3:
-    _compactar_yolov3()
-    _descompactar_yolov3()
+    if not os.path.exists(f"{shared}/modelo_YOLOv3"):
+        _compactar_yolov3()
+        _descompactar_yolov3()
     labels_path = f"{shared}/modelo_YOLOv3/coco.names"
     labels = open(labels_path).read().strip().split("\n")
     return yolov3(
