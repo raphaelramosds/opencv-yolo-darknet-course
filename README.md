@@ -26,6 +26,14 @@ Para configurar e executar usando CPU:
 make setup
 ```
 
+## Sequência dos notebooks
+
+Recomendo seguir a seguinte ordem de estudos nos notebooks desse repositório
+
+1. [Detecção de objetos com Darknet](./src/notebooks/YOLO%20v4%20-%20Deteccao%20de%20objetos%20com%20Darknet.ipynb)
+2. [Detecção de objetos com OpenCV](./src/notebooks/YOLO%20v4%20-%20Deteccao%20de%20objetos%20com%20OpenCV.ipynb)
+3. [Detecção de objetos com OpenCV - Explorando Mais](./src/notebooks/YOLO%20v4%20-%20Deteccao%20de%20objetos%20com%20OpenCV%20-%20Explorando%20Mais.ipynb)
+
 ## Reconhecimento
 
 Os códigos e recursos utilizados nesse repositório são adaptações do material presente no curso **Detecção de Objetos com YOLO, Darknet, OpenCV e Python**, fornecido pela plataforma IA Expert Academy, na Udemy.
