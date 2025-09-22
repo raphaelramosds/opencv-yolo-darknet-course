@@ -61,6 +61,7 @@ def carregar_yolov3() -> yolov3:
         labels,
     )
 
+
 def _mostrar_matriz(imagem: cv2.typing.MatLike) -> None:
     fig = plt.gcf()
     fig.set_size_inches(18, 10)
@@ -68,31 +69,37 @@ def _mostrar_matriz(imagem: cv2.typing.MatLike) -> None:
     plt.imshow(cv2.cvtColor(imagem, cv2.COLOR_BGR2RGB))
     plt.show()
 
-def mostrar_imagem(caminho_imagem: str) -> cv2.typing.MatLike:
+
+def mostrar_imagem(imagem: str) -> cv2.typing.MatLike:
     """
     Rotina para exibir uma imagem com o OpenCV
 
     Argumentos:
-        caminho_imagem (str): caminho para imagem de interesse
+        imagem (str): nome da imagem
+
+    Retorna:
+        cv2.typing.MatLike : objeto matricial que representa a imagem
     """
-    caminho_imagem = _buscar_imagem(caminho_imagem)
-    imagem = cv2.imread(caminho_imagem)
+    imagem = _buscar_imagem(imagem)
+    imagem = cv2.imread(imagem)
     _mostrar_matriz(imagem)
     return imagem
+
 
 def mostrar_imagem_cv2(imagem: cv2.typing.MatLike) -> None:
     """
     Rotina para exibir uma imagem a partir de um objeto MatLike do OpenCV
 
     Argumentos:
-        imagem (cv2.typing.MatLike): imagem manipulada pelo OpenCV
+        imagem (cv2.typing.MatLike): objeto matricial que representa a imagem
     """
     _mostrar_matriz(imagem)
 
-class ImageNotFound(Exception):
-    ...
 
-def _buscar_imagem(caminho_imagem: str) -> str:
+class ImageNotFound(Exception): ...
+
+
+def _buscar_imagem(imagem: str) -> str:
     """
     Rotina para buscar imagem
 
@@ -101,28 +108,30 @@ def _buscar_imagem(caminho_imagem: str) -> str:
     desse projeto.
 
     Argumentos:
-        caminho_imagem (str): caminho para imagem de interesse
+        imagem (str): nome da imagem
 
+    Retorna:
+        str : caminho absoluto para a imagem
     """
-    if os.path.exists(f"{darknet}/data/{caminho_imagem}"):
-        caminho_imagem = f"{darknet}/data/{caminho_imagem}"
-    elif os.path.exists(f"{img}/{caminho_imagem}"):
-        caminho_imagem = f"{img}/{caminho_imagem}"
+    if os.path.exists(f"{darknet}/data/{imagem}"):
+        imagem = f"{darknet}/data/{imagem}"
+    elif os.path.exists(f"{img}/{imagem}"):
+        imagem = f"{img}/{imagem}"
     else:
-        raise ImageNotFound(caminho_imagem)
-    return caminho_imagem
+        raise ImageNotFound(imagem)
+    return imagem
 
 
-def detectar_objetos(caminho_imagem: str, params: dict = {}) -> None:
+def detectar_objetos(imagem: str, params: dict = {}) -> None:
     """
     Rotina para detectar objetos com a rede YOLO a partir do framework darknet
 
     Argumentos:
-        caminho_imagem (str): caminho para imagem de interesse
+        imagem (str): nome da imagem
         params (dict): parametros adicionais para o algoritmo de deteccao
     """
-    caminho_imagem = _buscar_imagem(caminho_imagem)
-    darknet_cmd = f"./darknet detect cfg/yolov3.cfg ../yolov3.weights {caminho_imagem}"
+    imagem = _buscar_imagem(imagem)
+    darknet_cmd = f"./darknet detect cfg/yolov3.cfg ../yolov3.weights {imagem}"
 
     if params.get("thresh"):
         darknet_cmd = f"{darknet_cmd} -thresh {params['thresh']}"
