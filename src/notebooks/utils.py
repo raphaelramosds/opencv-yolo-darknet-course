@@ -61,6 +61,12 @@ def carregar_yolov3() -> yolov3:
         labels,
     )
 
+def _mostrar_matriz(imagem: cv2.typing.MatLike) -> None:
+    fig = plt.gcf()
+    fig.set_size_inches(18, 10)
+    plt.axis("off")
+    plt.imshow(cv2.cvtColor(imagem, cv2.COLOR_BGR2RGB))
+    plt.show()
 
 def mostrar_imagem(caminho_imagem: str) -> cv2.typing.MatLike:
     """
@@ -71,12 +77,17 @@ def mostrar_imagem(caminho_imagem: str) -> cv2.typing.MatLike:
     """
     caminho_imagem = _buscar_imagem(caminho_imagem)
     imagem = cv2.imread(caminho_imagem)
-    fig = plt.gcf()
-    fig.set_size_inches(18, 10)
-    plt.axis("off")
-    plt.imshow(cv2.cvtColor(imagem, cv2.COLOR_BGR2RGB))
-    plt.show()
+    _mostrar_matriz(imagem)
     return imagem
+
+def mostrar_imagem_cv2(imagem: cv2.typing.MatLike) -> None:
+    """
+    Rotina para exibir uma imagem a partir de um objeto MatLike do OpenCV
+
+    Argumentos:
+        imagem (cv2.typing.MatLike): imagem manipulada pelo OpenCV
+    """
+    _mostrar_matriz(imagem)
 
 class ImageNotFound(Exception):
     ...
