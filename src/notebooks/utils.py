@@ -75,19 +75,21 @@ def _mostrar_matriz(imagem: cv2.typing.MatLike) -> None:
     plt.show()
 
 
-def mostrar_imagem(imagem: str) -> cv2.typing.MatLike:
+def carregar_imagem_cv2(imagem: str, exibir: bool = True) -> cv2.typing.MatLike:
     """
-    Rotina para exibir uma imagem com o OpenCV
+    Rotina para carregar e exibir uma imagem com o OpenCV
 
     Args:
         imagem: nome da imagem
+        exibir: imprimir ou nao a imagem no display
 
     Returns:
         cv2.typing.MatLike : objeto matricial que representa a imagem
     """
     imagem = _buscar_imagem(imagem)
     imagem = cv2.imread(imagem)
-    _mostrar_matriz(imagem)
+    if exibir:
+        _mostrar_matriz(imagem)
     return imagem
 
 
@@ -187,12 +189,14 @@ def _buscar_imagem(imagem: str) -> str:
     desse projeto.
 
     Args:
-        imagem: nome da imagem
+        imagem: nome ou caminho para a imagem
 
     Returns:
         str: caminho absoluto para a imagem
     """
-    if os.path.exists(f"{darknet}/data/{imagem}"):
+    if os.path.exists(imagem):
+        pass
+    elif os.path.exists(f"{darknet}/data/{imagem}"):
         imagem = f"{darknet}/data/{imagem}"
     elif os.path.exists(f"{img}/{imagem}"):
         imagem = f"{img}/{imagem}"
@@ -219,7 +223,7 @@ def detectar_objetos(imagem: str, params: dict = {}) -> None:
         darknet_cmd = f"{darknet_cmd} -ext_output"
 
     os.system(f"cd {darknet} && {darknet_cmd}")
-    mostrar_imagem(f"{darknet}/predictions.jpg")
+    carregar_imagem_cv2(f"{darknet}/predictions.jpg")
 
 
 def detectar_objetos_cv2(
@@ -228,12 +232,7 @@ def detectar_objetos_cv2(
     thre_nms: float = 0.3,
 ):
     """
-    Detecta objetos em uma imagem utilizando YOLOv3 com OpenCV e desenha caixas delimitadoras.
-
-    A função carrega a rede YOLOv3, executa a inferência sobre a imagem e aplica
-    Non-Maxima Suppression (NMS) para eliminar caixas sobrepostas. Em seguida,
-    desenha caixas delimitadoras e rótulos sobre os objetos detectados, salva o
-    resultado em disco e exibe a imagem processada.
+    Detecta objetos em uma imagem utilizando YOLOv3 com OpenCV
 
     Args:
         imagem (cv2.typing.MatLike): Imagem de entrada em formato OpenCV (BGR).
@@ -247,18 +246,17 @@ def detectar_objetos_cv2(
             A imagem resultante é salva em ``resultado.jpg`` e exibida no notebook
             (ou ambiente gráfico disponível).
     """
-    yolov3 = carregar_yolov3()
-
     (H, W) = imagem.shape[:2]
 
-    colors = np.random.randint(0, 255, size=(len(yolov3.labels), 3), dtype="uint8")
+    # Carregar modelo e realizar inferencia
+    yolov3 = carregar_yolov3()
     net = cv2.dnn.readNet(yolov3.config_path, yolov3.weights_path)
+    resultado = blob_inferir_yolo_cv2(net, imagem)
+
+    # Definir caixas delimitadoras e confianças
     caixas = []
     confiancas = []
     IDclasses = []
-
-    resultado = blob_inferir_yolo_cv2(net, imagem)
-
     for output in resultado.layer_outputs:
         for detection in output:
             scores = detection[5:]
@@ -276,8 +274,9 @@ def detectar_objetos_cv2(
                 confiancas.append(float(confianca))
                 IDclasses.append(classeID)
 
+    # Desenhar caixas
+    colors = np.random.randint(0, 255, size=(len(yolov3.labels), 3), dtype="uint8")
     objetos = cv2.dnn.NMSBoxes(caixas, confiancas, thre, thre_nms)
-
     if len(objetos) > 0:
         for i in objetos.flatten():
             (x, y) = (caixas[i][0], caixas[i][1])
@@ -291,6 +290,6 @@ def detectar_objetos_cv2(
                 imagem, texto, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, cor, 2
             )
 
+    # Visualizar deteccoes
     cv2.imwrite("resultado.jpg", imagem)
-
     mostrar_imagem_cv2(imagem)
