@@ -5,7 +5,7 @@ YOLOV3WEIGHTS = shared/yolov3.weights
 
 # Etapa 1 - Download do Darknet
 $(DARKNET):
-	git clone https://github.com/pjreddie/darknet.git $(DARKNET)
+	git clone https://github.com/AlexeyAB/darknet.git $(DARKNET)
 	find $(DARKNET) -type f -print0 | xargs -0 dos2unix
 
 # Etapa 3 - Baixando os pesos do modelo pré-treinado
