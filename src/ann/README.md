@@ -55,29 +55,11 @@ Dada a tabela-verdade do operador lógico AND, apresentada a seguir
 
 Utilize as entradas tabela e a mesma arquitetura de perceptron da seção anterior (com os mesmos pesos e função de ativação) para calcular as saídas da rede neural e o erro médio absoluto (EMA), para cada um dos conjuntos de pesos abaixo.
 
-**a)**
-$
-\mathbf{w} =
-\begin{bmatrix}
-0 & 0
-\end{bmatrix}^T
-$
+**a)** $w_1=w_2=0.0$
 
-**b)**
-$
-\mathbf{w} =
-\begin{bmatrix}
-0.1 & 0.1
-\end{bmatrix}^T
-$
+**b)** $w_1=w_2=0.1$
 
-**c)**
-$
-\mathbf{w} =
-\begin{bmatrix}
-0.5 & 0.5
-\end{bmatrix}^T
-$
+**c)** $w_1=w_2=0.5$
 
 ## Perceptron de múltiplas camadas
 
