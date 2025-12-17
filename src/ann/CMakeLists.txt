@@ -14,6 +14,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # add_executable( executavel fontes )
 # Sintaxe: o "executavel" vai ser construido a partir dos arquivos "fontes"
 
-add_executable( PerceptronUmaCamada perceptron-uma-camada.cpp )
+add_executable( Questao01 questao01.cpp )
 
-add_executable( OperadorAnd operador-and.cpp )
+add_executable( Questao02 questao02.cpp )

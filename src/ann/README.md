@@ -1,8 +1,6 @@
 # Redes Neurais Artificiais
 
-## Perceptron de uma camada
-
-A arquitetura do perceptron de uma camada com três entradas pode ser representada abaixo
+**Questão 1.** A arquitetura do perceptron de uma camada com três entradas pode ser representada abaixo
 
 ```mermaid
 flowchart LR
@@ -42,9 +40,7 @@ $$
 
 E a função de ativação $f(x)=\texttt{stepfunc}(x)$
 
-## Operador AND
-
-Dada a tabela-verdade do operador lógico AND, apresentada a seguir
+**Questão 2.** Dada a tabela-verdade do operador lógico AND, apresentada a seguir
 
 | x₁ | x₂ | y |
 |----|----|---|
@@ -53,17 +49,21 @@ Dada a tabela-verdade do operador lógico AND, apresentada a seguir
 | 1  | 0  | 0 |
 | 1  | 1  | 1 |
 
-Utilize as entradas tabela e a mesma arquitetura de perceptron da seção anterior (com os mesmos pesos e função de ativação) para calcular as saídas da rede neural e o erro médio absoluto (EMA), para cada um dos conjuntos de pesos abaixo.
+Utilize as entradas tabela e a mesma arquitetura de perceptron da Questão 1 (com os mesmos pesos e função de ativação) para calcular as saídas da rede neural e o erro médio absoluto (EMA), para cada um dos conjuntos de pesos abaixo.
 
 **a)** $w_1=w_2=0.0$
 
 **b)** $w_1=w_2=0.1$
 
-**c)** $w_1=w_2=0.5$
+**c)**
+$
+\mathbf{w} =
+\begin{bmatrix}
+0.5 & 0.5
+\end{bmatrix}^T
+$
 
-## Perceptron de múltiplas camadas
-
-Uma arquitetura do perceptron de múltiplas camadas com uma camada oculta e duas entradas pode ser feita da seguinte forma
+**Questão 3.** Uma arquitetura do perceptron de múltiplas camadas com uma camada oculta e duas entradas pode ser feita da seguinte forma
 
 ```mermaid
 graph LR
@@ -154,9 +154,7 @@ $$
 
 E a função de ativação $f(x) = \texttt{sigmoid}(x)$
 
-## Operador XOR
-
-Dada a tabela-verdade do operador lógico XOR, apresentada a seguir
+**Questão 4.** Dada a tabela-verdade do operador lógico XOR, apresentada a seguir
 
 | x₁ | x₂ | y |
 |----|----|---|
@@ -165,4 +163,4 @@ Dada a tabela-verdade do operador lógico XOR, apresentada a seguir
 | 1  | 0  | 1 |
 | 1  | 1  | 0 |
 
-Utilize as entradas dessa tabela e a mesma arquitetura de perceptron da seção anterior para calcular as saídas da rede neural e o erro médio absoluto 
+Utilize as entradas dessa tabela e a mesma arquitetura de perceptron da Questão 3 para calcular as saídas da rede neural e o erro médio absoluto 
