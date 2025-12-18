@@ -12,7 +12,7 @@ flowchart LR
     ativacao --> y[y]
 ```
 
-Se pensarmos as entradas e pesos como vetores $\texttt{x}_{n,1}$ e $\texttt{w}_{n,1}$, a saída pode ser calculada como
+Se pensarmos as entradas e pesos como vetores $\textbf{x}$ e $\textbf{w}$, a saída pode ser calculada como
 
 $$y = f(\texttt{x} \cdot \texttt{w})$$
 
@@ -51,17 +51,11 @@ E a função de ativação $f(x)=\texttt{stepfunc}(x)$
 
 Utilize as entradas tabela e a mesma arquitetura de perceptron da Questão 1 (com os mesmos pesos e função de ativação) para calcular as saídas da rede neural e o erro médio absoluto (EMA), para cada um dos conjuntos de pesos abaixo.
 
-**a)** $w_1=w_2=0.0$
+a) $w_1=w_2=0.0$
 
-**b)** $w_1=w_2=0.1$
+b) $w_1=w_2=0.1$
 
-**c)**
-$
-\mathbf{w} =
-\begin{bmatrix}
-0.5 & 0.5
-\end{bmatrix}^T
-$
+c) $w_1=w_2=0.5$
 
 **Questão 3.** Uma arquitetura do perceptron de múltiplas camadas com uma camada oculta e duas entradas pode ser feita da seguinte forma
 
