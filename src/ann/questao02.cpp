@@ -11,7 +11,7 @@
 struct result
 {
     std::vector<std::vector<float>> inputs;
-    std::vector<float> y_net;
+    std::vector<float> y_calc;
     std::vector<int> y_real;
     std::vector<float> errors;
     int nrows;
@@ -35,7 +35,7 @@ void print_result(const result &r, const std::vector<float> &weights)
     {
         std::cout << std::setw(5) << r.inputs[i][0]
                   << std::setw(5) << r.inputs[i][1]
-                  << std::setw(10) << r.y_net[i]
+                  << std::setw(10) << r.y_calc[i]
                   << std::setw(10) << r.y_real[i]
                   << std::setw(10) << r.errors[i]
                   << std::endl;
@@ -54,7 +54,7 @@ result and_perceptron(std::vector<float> &weights)
     result r;
     r.nrows = nrows;
     r.inputs.resize(nrows, std::vector<float>(ncols));
-    r.y_net.resize(nrows);
+    r.y_calc.resize(nrows);
     r.y_real.resize(nrows);
     r.errors.resize(nrows);
 
@@ -64,10 +64,10 @@ result and_perceptron(std::vector<float> &weights)
         r.inputs[i][0] = (i >> 1) & 1;
         r.inputs[i][1] = i & 1;
 
-        r.y_net[i] = stepfunc_activate(cblas_sdot(ncols, r.inputs[i].data(), 1, weights.data(), 1), 1.0f);
+        r.y_calc[i] = stepfunc_activate(cblas_sdot(ncols, r.inputs[i].data(), 1, weights.data(), 1), 1.0f);
         r.y_real[i] = static_cast<uint8_t>(r.inputs[i][0]) & static_cast<uint8_t>(r.inputs[i][1]);
         
-        r.errors[i] = std::abs(r.y_net[i] - r.y_real[i]);
+        r.errors[i] = std::abs(r.y_calc[i] - r.y_real[i]);
     }
 
     return r;
