@@ -2,6 +2,13 @@ cmake_minimum_required(VERSION 3.28)
 
 project(Ann LANGUAGES CXX)  
 
+find_package(BLAS REQUIRED)
+if(BLAS_FOUND)
+    message(STATUS "Libraries BLAS encontradas: ${BLAS_LIBRARIES}")
+else()
+    message(WARNING "Nao foi possivel encontrar nenhuma library BLAS. Alguns codigos podem nao funcionar corretamente.")
+endif()
+
 # Definir C++ Standard para 20
 set(CMAKE_CXX_STANDARD 20)
 
@@ -17,3 +24,4 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_executable( Questao01 questao01.cpp )
 
 add_executable( Questao02 questao02.cpp )
+target_link_libraries( Questao02 ${BLAS_LIBRARIES} )

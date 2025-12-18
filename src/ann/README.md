@@ -49,7 +49,7 @@ E a função de ativação $f(x)=\texttt{stepfunc}(x)$
 | 1  | 0  | 0 |
 | 1  | 1  | 1 |
 
-Utilize as entradas tabela e a mesma arquitetura de perceptron da Questão 1 (com os mesmos pesos e função de ativação) para calcular as saídas da rede neural e o erro médio absoluto (EMA), para cada um dos conjuntos de pesos abaixo.
+Utilize as entradas dessa tabela para calcular o erro médio absoluto (EMA) para cada um dos conjuntos de pesos abaixo.
 
 a) $w_1=w_2=0.0$
 
