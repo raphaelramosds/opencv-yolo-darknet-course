@@ -25,3 +25,6 @@ add_executable( Questao01 questao01.cpp )
 
 add_executable( Questao02 questao02.cpp )
 target_link_libraries( Questao02 ${BLAS_LIBRARIES} )
+
+add_executable( Questao03 questao03.cpp )
+target_link_libraries( Questao03 ${BLAS_LIBRARIES} )
