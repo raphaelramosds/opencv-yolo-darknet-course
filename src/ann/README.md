@@ -1,5 +1,7 @@
 # Redes Neurais Artificiais
 
+## Exercícios
+
 **Questão 1.** A arquitetura do perceptron de uma camada com três entradas pode ser representada abaixo
 
 ```mermaid

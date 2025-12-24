@@ -4,9 +4,6 @@
 
 #include "activations.hpp"
 
-// Instale as libs BLAS e LAPACK para o uso de funcoes de Algebra Linear Numerica
-// sudo apt-get install libblas-dev liblapack-dev gfortran
-
 int main()
 {
     // Entradas

@@ -36,7 +36,11 @@ Recomendo seguir a seguinte ordem de estudos nos notebooks desse repositório
 
 ## Implementações de Redes Neurais
 
-Implementações relativas a Redes Neurais Artificial (ANN) foram implementadas em C++ na pasta `src/ann`.
+Implementações relativas a Redes Neurais Artificial (ANN) foram implementadas em C++ na pasta `src/ann` em formato de respostas a exercícios. Antes de compilar e executar as respostas dessas implementações, instale as libs BLAS e LAPACK para o uso de funcoes de Algebra Linear Numerica
+
+```bash
+sudo apt-get install libblas-dev liblapack-dev gfortran
+```
 
 Para compilá-las
 
