@@ -198,20 +198,18 @@ Utilize a arquitetura de rede neural da Questão 3 para calcular os parâmetros 
 2. Calcular o erro (delta) da camada de saída e, em seguida, o erro (delta) das camadas ocultas.
 3. Atualizar os pesos da camada de saída e depois da camada oculta
 
-Observe que, no passo 3, o algoritmo percorre a rede no sentido inverso ao do feed-forward, propagando o erro da saída em direção às camadas anteriores para ajustar os pesos com base nos deltas calculados e nas entradas. Por esse motivo, esse algoritmo é denominado backpropagation, o qual pode ser implementado a partir do seguinte pseudocódigo
+Observe que, nos passos 2 e 3, o algoritmo percorre a rede no sentido inverso ao do feed-forward, propagando o erro da saída em direção às camadas anteriores para ajustar os pesos com base nos deltas calculados e nas entradas. Por esse motivo, esse algoritmo é denominado backpropagation, o qual pode ser implementado a partir do seguinte pseudocódigo
 
-$
-\begin{aligned}
-&\text{para cada camada } l \text{ da última até a primeira camada oculta:} \\
-&\quad \text{para cada neurônio } j \text{ da camada } l: \\
-&\quad\quad \text{para cada peso } w_{ij} \text{ conectado ao neurônio } j: \\
-&\quad\quad\quad w_{ij} \leftarrow \alpha \cdot w_{ij} - \eta \cdot \delta_j \cdot a_i
-\end{aligned}
-$
+para cada camada $l$ da última até a primeira camada oculta  
+&nbsp;&nbsp;&nbsp;&nbsp;para cada neurônio $j$ da camada $l$  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;para cada peso w(i,j) conectado ao neurônio j  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; w(i,j) := $\alpha$ * w(i,j) - $\eta$ * $\delta$(j) * f(a(j))
+
 
 Em que 
 
-- $\delta_j$ é o delta correspondente ao neurônio $j$
+- $\delta$(j) é o delta correspondente ao neurônio $j$
+- f(a(j)) é o valor de ativação do neurônio $j$
 - $\eta$ é a taxa de aprendizagem (normalmente entre 0 e 1)
 - $\alpha$ é o momento (normalmente maior ou igual a 1)
 
