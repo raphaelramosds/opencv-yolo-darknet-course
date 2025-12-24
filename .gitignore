@@ -1,6 +1,7 @@
 .vscode/
 **/__pycache__
 **/darknet
+**/OIDv4_ToolKit
 **/*.weights
 **/*.tar.gz
 **/*.cfg

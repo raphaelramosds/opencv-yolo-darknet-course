@@ -33,6 +33,7 @@ Recomendo seguir a seguinte ordem de estudos nos notebooks desse repositório
 1. [Detecção de objetos com Darknet](./src/notebooks/YOLO%20v4%20-%20Deteccao%20de%20objetos%20com%20Darknet.ipynb)
 2. [Detecção de objetos com OpenCV](./src/notebooks/YOLO%20v4%20-%20Deteccao%20de%20objetos%20com%20OpenCV.ipynb)
 3. [Detecção de objetos com OpenCV - Explorando Mais](./src/notebooks/YOLO%20v4%20-%20Deteccao%20de%20objetos%20com%20OpenCV%20-%20Explorando%20Mais.ipynb)
+4. [Criando um dataset](./src/notebooks/YOLO%20v4%20-%20Criando%20um%20dataset.ipynb)
 
 ## Implementações de Redes Neurais
 

@@ -1,7 +1,11 @@
+OIDV4_TOOLKIT=shared/OIDv4_ToolKit
 DARKNET = shared/darknet
 YOLOV3WEIGHTS = shared/yolov3.weights
 
-.PHONY: build install clean setup
+.PHONY: build install clean setup oidv4
+
+$(OIDV4_TOOLKIT):
+	git clone https://github.com/EscVM/OIDv4_ToolKit.git $(OIDV4_TOOLKIT)
 
 # Etapa 1 - Download do Darknet
 $(DARKNET):
@@ -28,6 +32,13 @@ install:
 	poetry install
 
 setup: cpu install
+
+# NOTE. Crie um ambiente python antes de instalar as dependencies do requirements.txt desse repo
+# mkdir -p .local/virtualenvs
+# python -m venv ~/.local/virtualenvs/oidv4
+# source ~/.local/virtualenvs/oidv4/bin/activate
+oidv4: $(OIDV4_TOOLKIT)
+	cd $(OIDV4_TOOLKIT)
 
 # setup-gpu: gpu install
 
