@@ -252,7 +252,7 @@ para cada entrada x := (x1, x2)
     grad_v1  += δ_y  * h1
     grad_w11 += δ_h1 * x1
 
-// Atualização com momento (α >= 1) e taxa de aprendizagem (0 < η < 1)
+// Atualização com momento (0 ≤ α < 1) e taxa de aprendizagem (0 < η < 1)
 v1  := α * v1  - η * grad_v1
 w11 := α * w11 - η * grad_w11
 ```
