@@ -22,7 +22,7 @@ int main()
     };
     const int WEIGHTS_ROWS = 2, WEIGHTS_COLS = 3;
 
-    // Saída (1x3)
+    // Saída Camada Oculta (1x3)
     std::vector<float> h(3, 0.0f);
 
     // Camada oculta
@@ -33,9 +33,9 @@ int main()
         CblasNoTrans,
         CblasNoTrans,
         INPUTS_ROWS, WEIGHTS_COLS, INPUTS_COLS,
-        1.0f,
-        inputs.data(), INPUTS_COLS,
-        weights.data(), WEIGHTS_COLS, // ROW MAJOR entao stride (passo entre uma linha e outra) eh o numero de colunas
+        1.0f, 
+        inputs.data(), INPUTS_COLS, // ROW MAJOR entao stride (passo entre uma linha e outra) eh o numero de colunas
+        weights.data(), WEIGHTS_COLS, 
         0.0f,
         h.data(), WEIGHTS_COLS);
 

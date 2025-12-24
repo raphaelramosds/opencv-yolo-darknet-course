@@ -28,3 +28,6 @@ target_link_libraries( Questao02 ${BLAS_LIBRARIES} )
 
 add_executable( Questao03 questao03.cpp )
 target_link_libraries( Questao03 ${BLAS_LIBRARIES} )
+
+add_executable( Questao04 questao04.cpp )
+target_link_libraries( Questao04 ${BLAS_LIBRARIES} )

@@ -9,15 +9,12 @@ struct OutputTable
     std::vector<float> y_calc;
     std::vector<int> y_real;
     std::vector<float> errors;
-    int nrows;
+    int N_ROWS;
 };
 
-static inline void print_output_table(const OutputTable &output_table, const std::vector<float> &weights)
+static inline void print_output_table(const OutputTable &output_table)
 {
     unsigned int i = 0;
-
-    std::cout << "Pesos: [" << std::fixed << std::setprecision(2)
-              << weights[0] << ", " << weights[1] << "]\n";
 
     std::cout << std::setw(5) << "x1"
               << std::setw(5) << "x2"
@@ -28,7 +25,7 @@ static inline void print_output_table(const OutputTable &output_table, const std
 
     std::cout << std::string(40, '-') << std::endl;
 
-    for (; i < output_table.nrows; i++)
+    for (; i < output_table.N_ROWS; i++)
     {
         std::cout << std::setw(5) << output_table.inputs[i][0]
                   << std::setw(5) << output_table.inputs[i][1]
@@ -39,12 +36,13 @@ static inline void print_output_table(const OutputTable &output_table, const std
     }
 
     // calcular erro absoluto médio
-    float mae = cblas_sasum(output_table.nrows, output_table.errors.data(), 1) / output_table.nrows;
+    float mae = cblas_sasum(output_table.N_ROWS, output_table.errors.data(), 1) / output_table.N_ROWS;
     std::cout << "EMA = " << std::fixed << std::setprecision(2) << mae << "\n\n";
 }
 
+// Transpor matriz
 template <class T>
-void transpose_matrix(const std::vector<std::vector<T>> &matrix, std::vector<std::vector<T>> &output)
+void trans_m(const std::vector<std::vector<T>> &matrix, std::vector<std::vector<T>> &output)
 {
     int rows = matrix.size();
     if (rows == 0)
@@ -62,4 +60,27 @@ void transpose_matrix(const std::vector<std::vector<T>> &matrix, std::vector<std
             output[j][i] = matrix[i][j];
         }
     }
+}
+
+// Multiplicar matrizes ROW MAJOR
+// NOTE 1. A_COLS = B_ROWS
+// NOTE 2. NAO SE ESQUECA DE ALOCAR A MATRIZ Y!!
+template <class T>
+void mult_m(
+    const std::vector<T> &A,
+    const unsigned int A_ROWS, const unsigned int A_COLS,
+    const std::vector<T> &B,
+    const unsigned int B_COLS,
+    std::vector<T> &Y)
+{
+    cblas_sgemm(
+        CblasRowMajor,
+        CblasNoTrans,
+        CblasNoTrans,
+        A_ROWS, B_COLS, A_COLS,
+        1.0f,
+        A.data(), A_COLS,
+        B.data(), B_COLS,
+        0.0f,
+        Y.data(), B_COLS);
 }
