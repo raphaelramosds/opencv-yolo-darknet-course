@@ -39,12 +39,7 @@ OutputTable xor_network()
     unsigned int N_COLS = 2, N_ROWS = 4, i = 0;
 
     // Armazenar todas as combinações de entradas
-    OutputTable output_table;
-    output_table.N_ROWS = N_ROWS;
-    output_table.inputs.resize(N_ROWS, std::vector<float>(N_COLS));
-    output_table.y_calc.resize(N_ROWS);
-    output_table.y_real.resize(N_ROWS);
-    output_table.errors.resize(N_ROWS);
+    OutputTable output_table(N_ROWS, N_COLS);
 
     // Gerar tabela verdade 2x2 da tabela XOR com saidas esperadas e calculadas pelo perceptron
     for (; i < N_ROWS; i++)
@@ -63,7 +58,8 @@ OutputTable xor_network()
 
 void print_results()
 {
-    print_output_table(xor_network());
+    OutputTable output_table = xor_network();
+    print_output_table(output_table);
 }
 
 int main()

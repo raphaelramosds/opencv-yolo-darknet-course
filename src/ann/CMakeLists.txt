@@ -22,6 +22,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Sintaxe: o "executavel" vai ser construido a partir dos arquivos "fontes"
 
 add_executable( Questao01 questao01.cpp )
+target_link_libraries( Questao01 ${BLAS_LIBRARIES} )
 
 add_executable( Questao02 questao02.cpp )
 target_link_libraries( Questao02 ${BLAS_LIBRARIES} )

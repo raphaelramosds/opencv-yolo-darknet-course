@@ -5,9 +5,6 @@
 #include "activations.hpp"
 #include "helpers.hpp"
 
-// Instale as libs BLAS e LAPACK para o uso de funcoes de Algebra Linear Numerica
-// sudo apt-get install libblas-dev liblapack-dev gfortran
-
 float and_activate(std::vector<float> &inputs, std::vector<float> weights, int N_COLS)
 {
     return stepfunc_activate(
@@ -17,15 +14,11 @@ float and_activate(std::vector<float> &inputs, std::vector<float> weights, int N
 
 OutputTable and_network(std::vector<float> &weights)
 {
+    // Dimensoes da tabela verdade
     unsigned int N_COLS = 2, N_ROWS = 4, i = 0;
 
     // Armazenar todas as combinações de entradas
-    OutputTable output_table;
-    output_table.N_ROWS = N_ROWS;
-    output_table.inputs.resize(N_ROWS, std::vector<float>(N_COLS));
-    output_table.y_calc.resize(N_ROWS);
-    output_table.y_real.resize(N_ROWS);
-    output_table.errors.resize(N_ROWS);
+    OutputTable output_table(N_ROWS, N_COLS);
 
     // Gerar tabela verdade 2x2 da tabela AND com saidas esperadas e calculadas pelo perceptron
     for (; i < N_ROWS; i++)
@@ -44,9 +37,12 @@ OutputTable and_network(std::vector<float> &weights)
 
 void print_results(std::vector<float> weights)
 {
+    OutputTable output_table = and_network(weights);
+
     std::cout << "Pesos: [" << std::fixed << std::setprecision(2)
               << weights[0] << ", " << weights[1] << "]\n";
-    print_output_table(and_network(weights));
+
+    print_output_table(output_table);
 }
 
 int main()

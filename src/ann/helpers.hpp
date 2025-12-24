@@ -5,11 +5,19 @@
 
 struct OutputTable
 {
+    size_t N_ROWS;
+    size_t N_COLS;
     std::vector<std::vector<float>> inputs;
     std::vector<float> y_calc;
     std::vector<int> y_real;
     std::vector<float> errors;
-    int N_ROWS;
+
+    OutputTable(size_t rows, size_t cols)
+        : N_ROWS(rows), N_COLS(cols),
+          inputs(rows, std::vector<float>(cols)),
+          y_calc(rows),
+          y_real(rows),
+          errors(rows) {}
 };
 
 static inline void print_output_table(const OutputTable &output_table)
