@@ -198,20 +198,64 @@ Utilize a arquitetura de rede neural da Questão 3 para calcular os parâmetros 
 2. Calcular o erro (delta) da camada de saída e, em seguida, o erro (delta) das camadas ocultas.
 3. Atualizar os pesos da camada de saída e depois da camada oculta
 
-Observe que, nos passos 2 e 3, o algoritmo percorre a rede no sentido inverso ao do feed-forward, propagando o erro da saída em direção às camadas anteriores para ajustar os pesos com base nos deltas calculados e nas entradas. Por esse motivo, esse algoritmo é denominado backpropagation, o qual pode ser implementado a partir do seguinte pseudocódigo
+Observe que, nos passos 2 e 3, o algoritmo percorre a rede no sentido inverso ao do feed-forward, propagando o erro da saída em direção às camadas anteriores para ajustar os pesos com base nos deltas calculados e nas entradas.
 
-para cada camada $l$ da última até a primeira camada oculta  
-&nbsp;&nbsp;&nbsp;&nbsp;para cada neurônio $j$ da camada $l$  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;para cada peso w(i,j) conectado ao neurônio j  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; w(i,j) := $\alpha$ * w(i,j) - $\eta$ * $\delta$(j) * f(a(j))
+Por esse motivo, esse algoritmo é denominado backpropagation. 
 
+Para exemplificar, a seguir um pseudocódigo que atualiza os pesos `w11` e `v1`
 
-Em que 
+```mermaid
+graph LR
+    subgraph Entrada
+        x1[x1]
+        x2[x2]
+    end
 
-- $\delta$(j) é o delta correspondente ao neurônio $j$
-- f(a(j)) é o valor de ativação do neurônio $j$
-- $\eta$ é a taxa de aprendizagem (normalmente entre 0 e 1)
-- $\alpha$ é o momento (normalmente maior ou igual a 1)
+    subgraph Camada Oculta
+        h1[h1]
+        h2[h2]
+        h3[h3]
+    end
+
+    subgraph Saida
+        y[y]
+    end
+
+    x1 -->|w11=?| h1
+    x1 --> h2
+    x1 --> h3
+
+    x2 --> h1
+    x2 --> h2
+    x2 --> h3
+
+    h1 -->|v1=?| y
+    h2 --> y
+    h3 --> y
+```
+
+```c
+grad_v1 := 0.0
+grad_w11 := 0.0
+
+para cada entrada x := (x1, x2)
+
+    // Feed-forward: calculo das ativações dos neurônios
+    calcule h1
+    calcule y
+
+    // Backpropagation: calculo dos deltas da camada de saida e do neurônio da camada oculta
+    calcule δ_y
+    calcule δ_h1
+
+    // Acúmulo dos gradientes
+    grad_v1  += δ_y  * h1
+    grad_w11 += δ_h1 * x1
+
+// Atualização com momento (α >= 1) e taxa de aprendizagem (0 < η < 1)
+v1  := α * v1  - η * grad_v1
+w11 := α * w11 - η * grad_w11
+```
 
 Implemente o *backpropagation* para ajustar iterativamente os pesos das seguintes redes neurais até que o erro médio absoluto convirja para um valor próximo de zero.
 
