@@ -159,4 +159,66 @@ E a função de ativação $f(x) = \texttt{sigmoid}(x)$
 | 1  | 0  | 1 |
 | 1  | 1  | 0 |
 
-Utilize as entradas dessa tabela e a mesma arquitetura de perceptron da Questão 3 para calcular as saídas da rede neural e o erro médio absoluto 
+Utilize as entradas dessa tabela e a mesma rede neural da Questão 3 para calcular as saídas da rede neural e o erro médio absoluto 
+
+**Questão 5.** Em uma rede neural densa, o parâmetro delta ($\delta$) representa o erro propagado em cada neurônio. Ele mede o quanto a saída de um neurônio contribuiu para o erro propagado da sua camada atual para a próxima camada.
+
+Na rede neural da Questão 3, para uma entrada 
+
+$$
+\mathbf{x} =
+\begin{bmatrix}
+x_1 & x_2
+\end{bmatrix}^T
+$$
+
+O erro propagado da camada oculta para a camada de saída é proporcional ao *delta de saída*, calculado por
+
+$$
+\delta^{(saida)}=(y_{previsto}-y_{real})\dot{y}_{previsto}
+$$
+
+Com $y_{previsto}=f(x_0)$ e $\dot{y}_{previsto}=\dot{f}(x_0)$ e $x_0 = \mathbf{H}^T\mathbf{v}$
+
+O erro propagado da camada de entrada para a camada oculta é proporcional ao *delta da camada oculta*, calculado por
+
+$$
+\delta^{(oculta)} = \delta^{(saida)} \cdot [\dot{\textbf{F}}(\textbf{H})\circ\textbf{v}]
+$$
+
+Definimos $\dot{\mathbf{F}}(\textbf{x})$ como a matriz resultante após aplicar a derivada da função de ativação $f$ em cada entrada de $\textbf{x}$, e $\mathbf{C}=\mathbf{A}\circ\mathbf{B}$ como a multiplicação ponto a ponto ($c_i=a_i \cdot b_i$)
+
+Observe que $\delta^{(oculta)}$ é um vetor porque cada neurônio da camada oculta precisa ter o seu próprio valor de erro propagado. O $\delta^{(saida)}$, por sua vez, é um escalar porque na arquitetura que nos baseamos temos apenas um neurônio de saída.
+
+Utilize a arquitetura de rede neural da Questão 3 para calcular os parâmetros $\delta^{(saida)}$ e $\delta^{(oculta)}$ para cada uma das entradas da tabela verdade do operador XOR.
+
+**Questão 6.** O ajuste de pesos de uma rede neural densa pode ser realizado pelas seguintes etapas
+
+1. Calcular as ativações dos neurônios da(s) camada(s) oculta(s) e depois da camada de saída (processo *feed-forward*)
+2. Calcular o erro (delta) da camada de saída e, em seguida, o erro (delta) das camadas ocultas.
+3. Atualizar os pesos da camada de saída e depois da camada oculta
+
+Observe que, no passo 3, o algoritmo percorre a rede no sentido inverso ao do feed-forward, propagando o erro da saída em direção às camadas anteriores para ajustar os pesos com base nos deltas calculados e nas entradas. Por esse motivo, esse algoritmo é denominado backpropagation, o qual pode ser implementado a partir do seguinte pseudocódigo
+
+$
+\begin{aligned}
+&\text{para cada camada } l \text{ da última até a primeira camada oculta:} \\
+&\quad \text{para cada neurônio } j \text{ da camada } l: \\
+&\quad\quad \text{para cada peso } w_{ij} \text{ conectado ao neurônio } j: \\
+&\quad\quad\quad w_{ij} \leftarrow \alpha \cdot w_{ij} - \eta \cdot \delta_j \cdot a_i
+\end{aligned}
+$
+
+Em que 
+
+- $\delta_j$ é o delta correspondente ao neurônio $j$
+- $\eta$ é a taxa de aprendizagem (normalmente entre 0 e 1)
+- $\alpha$ é o momento (normalmente maior ou igual a 1)
+
+Implemente o *backpropagation* para ajustar iterativamente os pesos das seguintes redes neurais até que o erro médio absoluto convirja para um valor próximo de zero.
+
+a) Operador XOR com a arquitetura da rede neural da Questão 03 e os pesos inciais apresentados nas matrizes $\textbf{W}$ e $\textbf{v}$
+
+b) Operador AND com a arquitetura da rede neural da Questão 02 e pesos iniciais $w_1=w_2=0.0$
+
+b) Operador OR com a arquitetura da rede neural da Questão 02 e pesos iniciais $w_1=w_2=0.0$
