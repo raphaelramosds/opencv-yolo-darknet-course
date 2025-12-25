@@ -2,7 +2,7 @@
 
 Boa parte dos códigos e recursos utilizados nesse repositório são adaptações do material presente no curso **Detecção de Objetos com YOLO, Darknet, OpenCV e Python**, fornecido pela plataforma IA Expert Academy, na Udemy. Você pode fazer o download de todo o material do curso nesta pasta do drive [YOLO](https://drive.google.com/drive/folders/1jcWIoIWlFJ2ocERjW0p2W1cZ4LRMEjM5) 
 
-**IMPORTANTE:** Para executar as implementações das sessões a seguir, por favor não deixe de ler [Configurando o ambiente](./docs/Configuracao-Ambiente.md)
+**IMPORTANTE:** Antes de executar as implementações das sessões a seguir, por favor não deixe de ver [Configurando o ambiente](./docs/Configurando-Ambiente.md)
 
 ## Notebooks
 
@@ -31,12 +31,12 @@ Recomendo seguir a seguinte ordem de estudos nos notebooks desse repositório
 
 ## Implementações de Redes Neurais
 
-Implementações relativas a Redes Neurais Artificial (ANN) foram feitas em C++ na pasta `src/implementacoes-redes-neurais` em formato de respostas a exercícios. Antes de compilar e executá-las, 
+Implementações relativas a Redes Neurais Artificial (ANN) foram feitas em C++ na pasta `src/implementacoes-redes-neurais` em formato de respostas a exercícios.
 
 Para compilar as implementações siga o seguinte passo a passo
 
 ```bash
-$ cd src/ann
+$ cd src/implementacoes-redes-neurais
 
 # Crie o diretorio de build
 $ mkdir -p build
@@ -45,4 +45,7 @@ $ mkdir -p build
 $ cd build
 $ cmake ..
 $ cmake --build .
+
+# Executar a Questao01
+$ ./Questao01
 ```
