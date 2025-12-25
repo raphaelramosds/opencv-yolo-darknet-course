@@ -1,12 +1,12 @@
 # Detecção de Objetos com YOLO, Darknet, OpenCV e Python
 
+## Visão geral
+
 Boa parte dos códigos e recursos utilizados nesse repositório são adaptações do material presente no curso **Detecção de Objetos com YOLO, Darknet, OpenCV e Python**, fornecido pela plataforma IA Expert Academy, na Udemy. Você pode fazer o download de todo o material do curso nesta pasta do drive [YOLO](https://drive.google.com/drive/folders/1jcWIoIWlFJ2ocERjW0p2W1cZ4LRMEjM5) 
 
 **IMPORTANTE:** Antes de executar as implementações das sessões a seguir, por favor não deixe de ver [Configurando o ambiente](./docs/Configurando-Ambiente.md)
 
-## Notebooks
-
-Recomendo seguir a seguinte ordem de estudos nos notebooks desse repositório
+## Conteúdo
 
 [![Jupyter Notebook](https://img.shields.io/badge/-Jupyter%20Notebook-05122A?style=flat&logo=jupyter&logoColor=F37626)](./src/notebooks/YOLOv4-Deteccao-de-objetos-com-Darknet.ipynb) **Detecção de objetos com Darknet**
 - Detecção de objetos com o YOLO via linha de comando com o framework Darknet
@@ -29,11 +29,9 @@ Recomendo seguir a seguinte ordem de estudos nos notebooks desse repositório
 - Tratamento dos rótulos dessas imagens para serem utilizadas no treinamento do YOLO dentro do framework Darknet
 - Explicação dos parâmetros presentes nos arquivos .cfg e .data no contexto do treinamento e teste da rede YOLO
 
-## Implementações de Redes Neurais
-
-Implementações relativas a Redes Neurais Artificial (ANN) foram feitas em C++ na pasta `src/implementacoes-redes-neurais` em formato de respostas a exercícios.
-
-Para compilar as implementações siga o seguinte passo a passo
+[![Jupyter Notebook](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=C%2B%2B&logoColor=white)](./src/notebooks/YOLOv4-Criando-um-dataset.ipynb) **Redes Neurais Artificiais**
+- Implementações relativas a Redes Neurais Artificial (ANN) *feed-foward* foram feitas em C++ na pasta `src/implementacoes-redes-neurais` em formato de respostas a exercícios.
+- Para compilar as implementações siga o seguinte passo a passo
 
 ```bash
 $ cd src/implementacoes-redes-neurais
