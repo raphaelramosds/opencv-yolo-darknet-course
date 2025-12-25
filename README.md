@@ -19,10 +19,15 @@ Recomendo seguir a seguinte ordem de estudos nos notebooks desse repositório
 - Aplicação da Non-maxima Suppression (NMS)
 
 [![Jupyter Notebook](https://img.shields.io/badge/-Jupyter%20Notebook-05122A?style=flat&logo=jupyter&logoColor=F37626)](./src/notebooks/YOLOv4-Deteccao-de-objetos-com-OpenCV-Explorando-Mais.ipynb) **Detecção de objetos com OpenCV - Explorando Mais**
-- resumo
+- Redimensionamento da imagem de entrada
+- Construção do blob da imagem
+- Interpretação da saída da detecção para realizar contagem de objetos
 
 [![Jupyter Notebook](https://img.shields.io/badge/-Jupyter%20Notebook-05122A?style=flat&logo=jupyter&logoColor=F37626)](./src/notebooks/YOLOv4-Criando-um-dataset.ipynb) **Criando um dataset**
-- resumo
+- Download de imagens de classes específicas do Open Images Dataset utilizando a ferramenta OIDv4 Tookit
+- Criação de um dataset de treino e de teste a partir das classes escolhidas para treinar a rede
+- Tratamento dos rótulos dessas imagens para serem utilizadas no treinamento do YOLO dentro do framework Darknet
+- Explicação dos parâmetros presentes nos arquivos .cfg e .data no contexto do treinamento e teste da rede YOLO
 
 ## Implementações de Redes Neurais
 
@@ -31,13 +36,13 @@ Implementações relativas a Redes Neurais Artificial (ANN) foram feitas em C++ 
 Para compilar as implementações siga o seguinte passo a passo
 
 ```bash
-cd src/ann
+$ cd src/ann
 
 # Crie o diretorio de build
-mkdir -p build
+$ mkdir -p build
 
 # Build dos arquivos fonte com CMake
-cd build
-cmake ..
-cmake --build .
+$ cd build
+$ cmake ..
+$ cmake --build .
 ```
