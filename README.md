@@ -29,8 +29,8 @@ Boa parte dos códigos e recursos utilizados nesse repositório são adaptaçõe
 - Tratamento dos rótulos dessas imagens para serem utilizadas no treinamento do YOLO dentro do framework Darknet
 - Explicação dos parâmetros presentes nos arquivos .cfg e .data no contexto do treinamento e teste da rede YOLO
 
-[![Jupyter Notebook](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=C%2B%2B&logoColor=white)](./src/notebooks/YOLOv4-Criando-um-dataset.ipynb) **Redes Neurais Artificiais**
-- Implementações relativas a Redes Neurais Artificial (ANN) *feed-foward* foram feitas em C++ na pasta `src/implementacoes-redes-neurais` em formato de respostas a exercícios.
+[![CXX](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=C%2B%2B&logoColor=white)](./src/implementacoes-redes-neurais/) **Redes Neurais Artificiais**
+- Implementações relativas a Redes Neurais Artificial (ANN) *feed-foward* foram feitas em C++ em formato de respostas a exercícios.
 - Para compilar as implementações siga o seguinte passo a passo
 
 ```bash
