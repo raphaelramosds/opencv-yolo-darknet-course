@@ -38,7 +38,10 @@ setup: cpu install
 # python -m venv ~/.local/virtualenvs/oidv4
 # source ~/.local/virtualenvs/oidv4/bin/activate
 oidv4: $(OIDV4_TOOLKIT)
-	cd $(OIDV4_TOOLKIT)
+	cp src/scripts/converter_annotations.py \
+	   src/scripts/gerar_test.py \
+	   src/scripts/gerar_train.py \
+	   $(OIDV4_TOOLKIT)
 
 # setup-gpu: gpu install
 
