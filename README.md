@@ -1,47 +1,32 @@
 # Detecção de Objetos com YOLO, Darknet, OpenCV e Python
 
-## Dependências
+Boa parte dos códigos e recursos utilizados nesse repositório são adaptações do material presente no curso **Detecção de Objetos com YOLO, Darknet, OpenCV e Python**, fornecido pela plataforma IA Expert Academy, na Udemy. Você pode fazer o download de todo o material do curso nesta pasta do drive [YOLO](https://drive.google.com/drive/folders/1jcWIoIWlFJ2ocERjW0p2W1cZ4LRMEjM5) 
 
-Para executar com sucesso os exemplos desse repositório, é necessário instalar as seguintes dependências
+**IMPORTANTE:** Para executar as implementações das sessões a seguir, por favor não deixe de ler [Configurando o ambiente](./docs/Configuracao-Ambiente.md)
 
-```bash
-# Instalação de pacotes do Linux
-sudo apt-get install dos2unix wget git make python3
-
-# Instalação do poetry
-curl -sSL https://install.python-poetry.org | python3 -
-export PATH="/home/$USER/.local/bin:$PATH:"
-```
-
->💡**NOTE:** O último comando precisará ser adicionado ao .zhrc ou .bashrc para que o poetry possa ser chamado de qualquer diretório do terminal
-
-
-## Configuração do ambiente
-
-A preparação do ambiente foi automatizada. Com um único comando são instalados os pacotes necessários, feito o download do framework Darknet e dos pesos do modelo YOLOv3 pré-treinado utilizados nos exemplos deste repositório.
-
-Para configurar e executar usando CPU:
-
-```bash
-make setup
-```
-
-## Sequência dos notebooks
+## Notebooks
 
 Recomendo seguir a seguinte ordem de estudos nos notebooks desse repositório
 
-1. [Detecção de objetos com Darknet](./src/notebooks/YOLO%20v4%20-%20Deteccao%20de%20objetos%20com%20Darknet.ipynb)
-2. [Detecção de objetos com OpenCV](./src/notebooks/YOLO%20v4%20-%20Deteccao%20de%20objetos%20com%20OpenCV.ipynb)
-3. [Detecção de objetos com OpenCV - Explorando Mais](./src/notebooks/YOLO%20v4%20-%20Deteccao%20de%20objetos%20com%20OpenCV%20-%20Explorando%20Mais.ipynb)
-4. [Criando um dataset](./src/notebooks/YOLO%20v4%20-%20Criando%20um%20dataset.ipynb)
+[![Jupyter Notebook](https://img.shields.io/badge/-Jupyter%20Notebook-05122A?style=flat&logo=jupyter&logoColor=F37626)](./src/notebooks/YOLOv4-Deteccao-de-objetos-com-Darknet.ipynb) **Detecção de objetos com Darknet**
+- Detecção de objetos com o YOLO via linha de comando com o framework Darknet
+- Explicação do parâmetro *threshold* (limiar)
+- Como usar o modelo YOLO com outros pesos para detectar objetos de outros *datasets*
+
+[![Jupyter Notebook](https://img.shields.io/badge/-Jupyter%20Notebook-05122A?style=flat&logo=jupyter&logoColor=F37626)](./src/notebooks/YOLOv4-Deteccao-de-objetos-com-OpenCV.ipynb) **Detecção de objetos com OpenCV**
+- Detecção de objetos com o YOLO utilizando-se de abstrações de redes neurais convolucionais e densas presentes no OpenCV
+- Processamento da imagem de entrada com as transformações *mean subtraction* e *resizing*
+- Aplicação da Non-maxima Suppression (NMS)
+
+[![Jupyter Notebook](https://img.shields.io/badge/-Jupyter%20Notebook-05122A?style=flat&logo=jupyter&logoColor=F37626)](./src/notebooks/YOLOv4-Deteccao-de-objetos-com-OpenCV-Explorando-Mais.ipynb) **Detecção de objetos com OpenCV - Explorando Mais**
+- resumo
+
+[![Jupyter Notebook](https://img.shields.io/badge/-Jupyter%20Notebook-05122A?style=flat&logo=jupyter&logoColor=F37626)](./src/notebooks/YOLOv4-Criando-um-dataset.ipynb) **Criando um dataset**
+- resumo
 
 ## Implementações de Redes Neurais
 
-Implementações relativas a Redes Neurais Artificial (ANN) foram feitas em C++ na pasta `src/ann` em formato de respostas a exercícios. Antes de compilar e executá-las, instale as libs BLAS e LAPACK para o uso de funcoes de Algebra Linear Numerica
-
-```bash
-sudo apt-get install libblas-dev liblapack-dev gfortran
-```
+Implementações relativas a Redes Neurais Artificial (ANN) foram feitas em C++ na pasta `src/implementacoes-redes-neurais` em formato de respostas a exercícios. Antes de compilar e executá-las, 
 
 Para compilar as implementações siga o seguinte passo a passo
 
@@ -56,12 +41,3 @@ cd build
 cmake ..
 cmake --build .
 ```
-
-## Reconhecimento
-
-Boa parte dos códigos e recursos utilizados nesse repositório são adaptações do material presente no curso **Detecção de Objetos com YOLO, Darknet, OpenCV e Python**, fornecido pela plataforma IA Expert Academy, na Udemy.
-
-No link abaixo você pode fazer o download de todo o material do curso.
-
-[![Google Drive](https://img.shields.io/badge/Google%20Drive-4285F4.svg?style=for-the-badge&logo=Google-Drive&logoColor=white)](https://drive.google.com/drive/folders/1jcWIoIWlFJ2ocERjW0p2W1cZ4LRMEjM5)
-
