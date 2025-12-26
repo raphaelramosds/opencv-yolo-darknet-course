@@ -35,7 +35,7 @@ Boa parte dos códigos e recursos utilizados nesse repositório são adaptaçõe
 - Carregamento do modelo pré-treinado
 - Realização de inferência em imagens, vídeos e webcam
 
-[![Jupyter Notebook](https://img.shields.io/badge/-Jupyter%20Notebook-05122A?style=flat&logo=jupyter&logoColor=F37626)](./src/notebooks/YOLOv8-Treinamento.ipynb) **YOLOv8 - Treinamento de um modelo customizado**
+[![Jupyter Notebook](https://img.shields.io/badge/-Jupyter%20Notebook-05122A?style=flat&logo=jupyter&logoColor=F37626)](./src/notebooks/YOLOv8-Treinamento-de-um-modelo-customizado.ipynb) **YOLOv8 - Treinamento de um modelo customizado**
 - Treinamento de um modelo YOLOv8 customizado utilizando a biblioteca Ultralytics YOLO
 - Preparação do dataset no formato YOLO
 - Configuração dos hiperparâmetros de treinamento
