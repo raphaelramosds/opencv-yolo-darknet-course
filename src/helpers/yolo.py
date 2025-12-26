@@ -13,3 +13,7 @@ def detectar_objetos_url(url_imagem: str, conf: float = 0.25) -> None:
 def detectar_objetos_imagens(pasta: str, conf: float = 0.25) -> None:
     yolo_cmd = f"yolo task=detect mode=predict model=yolov8n.pt conf={conf} source='{pasta}' save=True"
     os.system(yolo_cmd)
+
+def detectar_objetos_video(video_caminho: str, conf: float = 0.25) -> None:
+    yolo_cmd = f"yolo task=detect mode=predict model=yolov8n.pt conf={conf} source='{video_caminho}' save=True"
+    os.system(yolo_cmd)

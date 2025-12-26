@@ -38,12 +38,13 @@ Boa parte dos códigos e recursos utilizados nesse repositório são adaptaçõe
 - Instalação e configuração do ambiente
 - Carregamento do modelo pré-treinado
 - Realização de inferência em imagens, vídeos e webcam
+- Comparação das métricas de avaliação mAP50 e mAP50-95 entre os modelos YOLOv8x, YOLOv8m e YOLOv8n
 
 [![Jupyter Notebook](https://img.shields.io/badge/-Jupyter%20Notebook-05122A?style=flat&logo=jupyter&logoColor=F37626)](./src/notebooks/YOLOv8-Treinamento-de-um-modelo-customizado.ipynb) **YOLOv8 - Treinamento de um modelo customizado**
 - Treinamento de um modelo YOLOv8 customizado utilizando a biblioteca Ultralytics YOLO
 - Preparação do dataset no formato YOLO
 - Configuração dos hiperparâmetros de treinamento
-- Monitoramento do processo de treinamento e avaliação do modelo treinado 
+- Monitoramento do processo de treinamento e avaliação do modelo treinado
 
 [![CXX](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=C%2B%2B&logoColor=white)](./src/implementacoes-redes-neurais/) **Redes Neurais Artificiais**
 - Implementações relativas a Redes Neurais Artificial (ANN) *feed-foward* foram feitas em C++ em formato de respostas a exercícios.

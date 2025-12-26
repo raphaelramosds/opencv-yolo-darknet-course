@@ -3,6 +3,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import time
 import typing as t
+import json
+import os
+from IPython.display import HTML
+from base64 import b64encode
 
 from .darknet import carregar_yolo
 from .models import ResultadoDeteccao
@@ -160,7 +164,7 @@ def _desenhar_detecoes_na_imagem(
             cv2.putText(
                 imagem, texto, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, cor, 2
             )
-            
+
     return imagem
 
 
@@ -204,3 +208,98 @@ def detectar_objetos(
 
     cv2.imwrite("resultado.jpg", imagem_matriz)
     mostrar_imagem(imagem_matriz)
+
+
+def label_caixa(image, box, label="", color=(128, 128, 128), txt_color=(255, 255, 255)):
+    """
+    Desenha o label (rótulo) da predição, acima do objeto detectado
+    """
+    lw = max(round(sum(image.shape) / 2 * 0.003), 2)
+    p1, p2 = (int(box[0]), int(box[1])), (int(box[2]), int(box[3]))
+    cv2.rectangle(image, p1, p2, color, thickness=lw, lineType=cv2.LINE_AA)
+    if label:
+        tf = max(lw - 1, 1)  # espessura da fonte
+        w, h = cv2.getTextSize(label, 0, fontScale=lw / 3, thickness=tf)[
+            0
+        ]  # largura e altura do texto
+        outside = p1[1] - h >= 3
+        p2 = p1[0] + w, p1[1] - h - 3 if outside else p1[1] + h + 3
+        cv2.rectangle(
+            image, p1, p2, color, -1, cv2.LINE_AA
+        )  # retangulo preenchido (que ficará atrás do texto, para aumentar a legibilidade)
+        cv2.putText(
+            image,
+            label,
+            (p1[0], p1[1] - 2 if outside else p1[1] + h + 2),
+            0,
+            lw / 3,
+            txt_color,
+            thickness=tf,
+            lineType=cv2.LINE_AA,
+        )
+
+
+def desenha_caixas(image, boxes, labels=[], colors=[], score=True, conf=None):
+    """
+    Desenha as caixas delimitadoras (bounding boxes) sobre a imagem
+    - Se conf=True então escreve a confiança ao lado do label
+    """
+    # Carrega os labels do arquivo JSON se não forem fornecidos
+    if labels == []:
+        json_path = os.path.join(os.path.dirname(__file__), "labels.json")
+        with open(json_path, "r") as f:
+            labels = json.load(f)
+            # Converte chaves string para inteiros
+            labels = {int(k): v for k, v in labels.items()}
+
+    # Carrega as cores do arquivo JSON se não forem fornecidas
+    if colors == []:
+        json_path = os.path.join(os.path.dirname(__file__), "colors.json")
+        with open(json_path, "r") as f:
+            colors = json.load(f)
+            # Converte listas em tuplas
+            colors = [tuple(color) for color in colors]
+
+    # desenha/plota cada caixa
+    for box in boxes:
+        # add score (confiança) no label se score=True
+        if score:
+            label = (
+                labels[int(box[-1]) + 1]
+                + " "
+                + str(round(100 * float(box[-2]), 1))
+                + "%"
+            )
+        else:
+            label = labels[int(box[-1]) + 1]
+        # filtra cada caixa, abaixo do limiar (threshold) conf, se conf=True
+        if conf:
+            if box[-2] > conf:
+                color = colors[int(box[-1])]
+                label_caixa(image, box, label, color)
+        else:
+            color = colors[int(box[-1])]
+            label_caixa(image, box, label, color)
+
+    return image
+
+    ## baseado no código de Tom Keldenich (inside-machinelearning.com)
+
+
+def exibir_video(video_caminho: str):
+    """
+    Exibe um vídeo a partir do caminho fornecido usando OpenCV.
+
+    Args:
+        video_caminho (str): Caminho para o arquivo de vídeo.
+    """
+    mp4 = open(video_caminho, "rb").read()
+    data_url = "data:video/mp4;base64," + b64encode(mp4).decode()
+    return HTML(
+        """
+  <video width=500 controls>
+    <source src="%s" type="video/mp4"
+  </video>
+  """
+        % data_url
+    )

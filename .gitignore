@@ -13,5 +13,7 @@ shared/darknet
 shared/OIDv4_ToolKit
 
 # Results and logs
-src/notebooks/resultado.jpg
+src/notebooks/*.jpg
 src/notebooks/runs
+src/notebooks/datasets
+src/datasets
