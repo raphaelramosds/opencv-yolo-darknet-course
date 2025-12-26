@@ -8,6 +8,10 @@ Boa parte dos códigos e recursos utilizados nesse repositório são adaptaçõe
 
 ## Conteúdo
 
+[![YOLO papers](https://img.shields.io/badge/YOLO-Papers-blue)](./docs/YOLO-Papers.md) **Papers do You Only Look Once (YOLO)**
+- Lista com os principais artigos científicos relacionados à série de modelos YOLO para detecção de objetos
+- Links para os repositórios oficiais e implementações
+
 [![Jupyter Notebook](https://img.shields.io/badge/-Jupyter%20Notebook-05122A?style=flat&logo=jupyter&logoColor=F37626)](./src/notebooks/YOLOv4-Deteccao-de-objetos-com-Darknet.ipynb) **YOLOv4 - Detecção de objetos com Darknet**
 - Detecção de objetos com o YOLO via linha de comando com o framework Darknet
 - Explicação do parâmetro *threshold* (limiar)
