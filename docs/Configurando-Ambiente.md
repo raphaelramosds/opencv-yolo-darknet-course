@@ -16,9 +16,8 @@ sudo apt update
 sudo apt install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev curl git libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
 # Instale a versão do Python necessária para o projeto
-pyenv install 3.10.19
+pyenv install 3.11
 
-pyenv global 3.10.19
 ```
 
 ### Poetry
@@ -46,10 +45,17 @@ make darknet-gpu
 ### Instalação das dependências Python
 
 ```bash
+# Defina a versão do Python para o projeto
+pyenv global 3.11
+
 # Instale as dependências com Poetry
 poetry install
 
-# Ative o ambiente virtual do Poetry
+# Ou use pip (sem ambiente virtual)
+# OBS: crie um ambiente virtual antes de usar pip
+pip install -r requirements.txt
+
+# Ative o ambiente virtual do Poetry/Pip
 source $(poetry env info --path)/bin/activate
 
 # Instale o PyTorch (GPU)

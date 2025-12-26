@@ -1,8 +1,17 @@
 .vscode/
 **/__pycache__
-**/darknet
-**/OIDv4_ToolKit
-**/*.weights
-**/*.tar.gz
-**/*.cfg
-**/*.names
+
+# Data files
+*.weights
+*.tar.gz
+*.cfg
+*.names
+*.pt
+
+# Models and such
+shared/darknet
+shared/OIDv4_ToolKit
+
+# Results and logs
+src/notebooks/resultado.jpg
+src/notebooks/runs
