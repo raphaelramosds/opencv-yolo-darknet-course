@@ -20,13 +20,12 @@ $(YOLOV3WEIGHTS):
 cpu: $(YOLOV3WEIGHTS) $(DARKNET)
 	cd $(DARKNET) && $(MAKE)
 
-# FIXME: getting "CUDA Error: no CUDA-capable device is detected" on jupyter notebook cell
-# gpu: $(YOLOV3WEIGHTS) $(DARKNET)
-# 	cd $(DARKNET) && \
-# 	sed -i 's/^GPU=.*/GPU=1/' Makefile && \
-# 	sed -i '/-gencode/d' Makefile && \
-# 	sed -i '9iARCH= -gencode arch=compute_50,code=[sm_50,compute_50] -gencode arch=compute_52,code=[sm_52,compute_52] -gencode arch=compute_86,code=sm_86' Makefile && \
-# 	$(MAKE)
+gpu: $(YOLOV3WEIGHTS) $(DARKNET)
+	cd $(DARKNET) && \
+	sed -i 's/^GPU=.*/GPU=1/' Makefile && \
+	sed -i 's/^OPENCV=.*/OPENCV=1/' Makefile && \
+	sed -i 's/^CUDNN=.*/CUDNN=1/' Makefile && \
+	$(MAKE)
 
 install:
 	poetry install
@@ -43,7 +42,7 @@ oidv4: $(OIDV4_TOOLKIT)
 	   src/scripts/gerar_train.py \
 	   $(OIDV4_TOOLKIT)
 
-# setup-gpu: gpu install
+setup-gpu: gpu install
 
 clean:
 	rm -rf $(DARKNET)
