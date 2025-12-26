@@ -2,35 +2,30 @@ OIDV4_TOOLKIT=shared/OIDv4_ToolKit
 DARKNET = shared/darknet
 YOLOV3WEIGHTS = shared/yolov3.weights
 
-.PHONY: build install clean setup oidv4
+.PHONY: install clean setup-darknet oidv4
 
 $(OIDV4_TOOLKIT):
 	git clone https://github.com/EscVM/OIDv4_ToolKit.git $(OIDV4_TOOLKIT)
 
-# Etapa 1 - Download do Darknet
+# Download do Darknet
 $(DARKNET):
 	git clone https://github.com/AlexeyAB/darknet.git $(DARKNET)
 	find $(DARKNET) -type f -print0 | xargs -0 dos2unix
 
-# Etapa 3 - Baixando os pesos do modelo pré-treinado
+# Download dos pesos do modelo pré-treinado
 $(YOLOV3WEIGHTS):
 	wget -O $(YOLOV3WEIGHTS) https://data.pjreddie.com/files/yolov3.weights
 
-# Etapa 2 - Compilando a biblioteca
-cpu: $(YOLOV3WEIGHTS) $(DARKNET)
+# Compilacao da biblioteca
+darknet-cpu: $(YOLOV3WEIGHTS) $(DARKNET)
 	cd $(DARKNET) && $(MAKE)
 
-gpu: $(YOLOV3WEIGHTS) $(DARKNET)
+darknet-gpu: $(YOLOV3WEIGHTS) $(DARKNET)
 	cd $(DARKNET) && \
 	sed -i 's/^GPU=.*/GPU=1/' Makefile && \
 	sed -i 's/^OPENCV=.*/OPENCV=1/' Makefile && \
 	sed -i 's/^CUDNN=.*/CUDNN=1/' Makefile && \
 	$(MAKE)
-
-install:
-	poetry install
-
-setup: cpu install
 
 # NOTE. Crie um ambiente python antes de instalar as dependencies do requirements.txt desse repo
 # mkdir -p .local/virtualenvs
@@ -42,7 +37,6 @@ oidv4: $(OIDV4_TOOLKIT)
 	   src/scripts/gerar_train.py \
 	   $(OIDV4_TOOLKIT)
 
-setup-gpu: gpu install
 
 clean:
 	rm -rf $(DARKNET)
