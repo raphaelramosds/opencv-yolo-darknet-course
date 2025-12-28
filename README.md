@@ -8,7 +8,7 @@ Boa parte dos códigos e recursos utilizados nesse repositório são adaptaçõe
 
 ## Conteúdo
 
-[![YOLO papers](https://img.shields.io/badge/YOLO-Papers-blue)](./docs/YOLO-Papers.md) **Papers do You Only Look Once (YOLO)**
+[![YOLO papers](https://img.shields.io/badge/YOLO-Papers-blue)](./docs/YOLO-Papers.md) **Papers You Only Look Once (YOLO)**
 - Lista com os principais artigos científicos relacionados à série de modelos YOLO para detecção de objetos
 - Links para os repositórios oficiais e implementações
 
@@ -40,7 +40,7 @@ Boa parte dos códigos e recursos utilizados nesse repositório são adaptaçõe
 - Realização de inferência em imagens, vídeos e webcam
 - Comparação das métricas de avaliação mAP50 e mAP50-95 entre os modelos YOLOv8x, YOLOv8m e YOLOv8n
 
-[![Jupyter Notebook](https://img.shields.io/badge/-Jupyter%20Notebook-05122A?style=flat&logo=jupyter&logoColor=F37626)](./src/notebooks/YOLOv8-Treinamento-de-um-modelo-customizado.ipynb) **YOLOv8 - Treinamento de um modelo customizado**
+[![Jupyter Notebook](https://img.shields.io/badge/google_colab-F9AB00?style=flat&logo=google-colab&logoColor=white)](https://colab.research.google.com/drive/17aipZlLd-t1WNXKh7jlcDQY8Kg8v-0zB#scrollTo=YXqUaJWNea_e) **YOLOv8 - Treinamento de um modelo customizado**
 - Treinamento de um modelo YOLOv8 customizado utilizando a biblioteca Ultralytics YOLO
 - Preparação do dataset no formato YOLO
 - Configuração dos hiperparâmetros de treinamento
